@@ -1,0 +1,775 @@
+<!-- Save as index.html and open in browser -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For My Little Rabbit ❤️</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink1: #ff758c;
+      --pink2: #ff7eb3;
+      --accent: #ff2e6d;
+      --glass: rgba(255,255,255,0.12);
+      --glass-2: rgba(255,255,255,0.08);
+      --white: #ffffff;
+    }
+
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;scroll-behavior: smooth;}
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg,var(--pink1),var(--pink2));
+      color: var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      scroll-behavior: smooth;
+    }
+    /* Radhe pattern background */
+    body::before {
+    content: "I love you Radhe";
+    position: fixed;
+    top: 0; left: 0;
+    width: 200%;
+    height: auto;
+    padding-left: 150px;
+    padding-top: -500px;
+    margin-bottom: 1000px;
+    bottom: 1000px;
+    font-size: 120px;
+    font-weight: 900;
+    font-family: 'Dancing Script', cursive;
+    color: rgba(255, 255, 255, 0.25); /* very subtle */
+    white-space: pre-wrap;
+    line-height: 1.6;
+    transform: rotate(-20deg);
+    z-index: 0; /* behind all other content */
+    pointer-events: none;
+    }
+    .hero {
+  position: relative; /* already set, ensure this exists */
+  overflow: visible; /* allow ::before to show */
+  z-index: 2; /* content above background */
+}
+
+/* Big glowing Radhe behind hero content */
+.hero::before {
+  content: "Radhe";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 180px; /* adjust as needed */
+  font-family: 'Dancing Script', cursive;
+  color: rgba(255, 255, 255, 1); /* subtle glow */
+  z-index: 0; /* behind hero content */
+  pointer-events: none;
+  text-align: center;
+  text-shadow: 
+    0 0 40px rgba(255, 200, 255, 0.3),
+    0 0 80px rgba(255, 150, 200, 0.2),
+    0 0 120px rgba(255, 100, 180, 0.15);
+}
+
+    /* Stars & sparkles layer */
+    .bg-layer{
+      position:fixed;inset:0;pointer-events:none;z-index:0;
+      overflow:hidden;
+    }
+    .star {
+      position:absolute;
+      width:2px;height:2px;background:#fff;border-radius:50%;
+      opacity:0.6;transform:translateZ(0);
+      animation: twinkle 3s infinite ease-in-out;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.08));
+    }
+    @keyframes twinkle {
+      0%,100%{opacity:0.15; transform:scale(1)}
+      50%{opacity:1; transform:scale(1.6)}
+    }
+    .sparkle {
+      position:absolute;width:6px;height:6px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.05));
+      opacity:0.85;filter: blur(6px);
+      animation: floaty 8s linear infinite;
+    }
+    @keyframes floaty { from{ transform: translateY(0) } to{ transform: translateY(-120vh) } }
+
+    /* Container & layout */
+    .page {
+      position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;
+    }
+    header{
+      width:100%;padding:20px 28px;display:flex;justify-content:space-between;align-items:center;
+      background: linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+      backdrop-filter: blur(6px);position:sticky;top:0;z-index:5;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:46px;height:46px;border-radius:12px;background:linear-gradient(45deg,#fff4, #fff2);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+    nav a{
+      color:var(--white);text-decoration:none;margin-left:16px;font-weight:500;opacity:0.95;
+    }
+    nav a:hover{opacity:1;text-decoration:underline}
+
+    /* HERO */
+    .hero{
+      display:grid;place-items:center;min-height:78vh;padding:40px 24px;text-align:center;position:relative;
+    }
+    .hero-card{
+      width:min(920px,94%);background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border-radius:20px;padding:44px;box-shadow:0 12px 40px rgba(0,0,0,0.18);backdrop-filter: blur(6px);
+      display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap;position:relative;overflow:hidden;
+    }
+
+    .hero-left{
+      flex:1 1 360px;min-width:280px;
+    }
+    .hero-right{
+      flex:0 0 300px;min-width:220px;display:flex;flex-direction:column;gap:14px;align-items:center;
+    }
+
+    .title{
+      font-family: 'Dancing Script', cursive;font-size:40px;color:var(--white);line-height:1.02;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .subtitle{
+      margin-top:10px;font-size:16px;opacity:0.95;color:rgba(255,255,255,0.95);
+    }
+
+    .enter-btn{
+      margin-top:20px;padding:12px 28px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--white),#fff0);
+      color:var(--accent);font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 8px 30px rgba(255,255,255,0.06);
+      transform: translateY(0);transition: transform .25s ease, box-shadow .25s;
+    }
+    .enter-btn:hover{ transform:translateY(-4px); box-shadow:0 18px 36px rgba(255,255,255,0.08) }
+
+    /* small playful micro-card (front of hero-right) */
+    .mini-card{
+      width:260px;background:var(--glass);padding:14px;border-radius:14px;display:flex;flex-direction:column;gap:8px;
+    }
+    .mini-card img{width:100%;height:auto;object-fit:cover;border-radius:10px;border:2px solid rgba(255,255,255,0.05);}
+    .mini-card .cta{display:flex;gap:8px;align-items:center;justify-content:center}
+    
+
+    /* Gallery */
+    .section{padding:60px 24px;display:flex;flex-direction:column;gap:18px;align-items:center;position:relative}
+    .section h2{font-size:28px;letter-spacing:0.2px}
+    .gallery{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;width:100%;max-width:980px;
+    }
+    .photo{
+      height:200px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:1px solid rgba(255,255,255,0.06);
+      transition: transform .35s cubic-bezier(.2,.9,.25,1), box-shadow .35s;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+    .photo img{width:100%;height:auto;object-fit:cover;display:block;transition:transform .9s}
+    .photo:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.25)}
+    .photo:hover img{transform:scale(1.05)}
+    .photo .label{
+      position:absolute;left:10px;bottom:10px;background: linear-gradient(90deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));
+      padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Notes / typewriter */
+    .notes{
+      max-width:880px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.04);
+      font-size:18px;line-height:1.6;color:rgba(255,255,255,0.98);
+    }
+    .typewriter{
+      display:inline-block;border-right:2px solid rgba(255,255,255,0.9);padding-right:3px;
+      white-space:nowrap;overflow:hidden;max-width:100%;
+    }
+    .emoji {
+      font-size: 3rem;
+      margin: 10px;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* Surprise area */
+    .surprise-wrap{display:flex;flex-direction:column;gap:18px;align-items:center}
+    .surprise-btn{
+      background:transparent;border:2px solid rgba(255,255,255,0.12);padding:14px 22px;border-radius:14px;color:#fff;cursor:pointer;font-weight:700;
+      transition:transform .2s, background .3s;
+    }
+    .surprise-btn:hover{transform:translateY(-6px);background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))}
+
+    /* big reveal */
+    .reveal{
+      margin-top:12px;font-size:28px;font-family: 'Dancing Script', cursive;opacity:0;transform:scale(.9);transition:all .8s cubic-bezier(.2,.9,.25,1);
+      text-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+    .reveal.show{opacity:1;transform:scale(1);}
+
+    /* modal for large photos */
+    .modal{
+      position:fixed;inset:0;display:none;place-items:center;background:linear-gradient(180deg, rgba(0,0,0,0.46), rgba(0,0,0,0.6));z-index:20;
+    }
+    .modal.open{display:grid}
+    .modal .modal-card{width:min(920px,94%);border-radius:14px;overflow:hidden;background:var(--white);color:#111;padding:18px}
+    .modal .modal-card img{width:100%;height:520px;object-fit:cover;border-radius:8px}
+
+    /* footer */
+    footer{padding:28px;text-align:center;opacity:0.95;font-size:14px;color:rgba(255,255,255,0.9)}
+
+    /* responsive tweaks */
+    @media (max-width:720px){
+      .hero-card{padding:20px}
+      .hero-right{flex: 0 0 100%}
+      .hero-left{flex:1 1 100%}
+      .mini-card img{height:120px}
+      .photo{height:140px}
+    }
+
+    /* confetti particles - for surprise */
+    .confetti {
+      position:fixed;pointer-events:none;z-index:30;inset:0;overflow:visible;
+    }
+    .confetti-piece{
+      position:absolute;width:10px;height:16px;opacity:0.95;transform-origin:center;will-change:transform,opacity;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative star + sparkles layer -->
+  <div class="bg-layer" id="bgLayer"></div>
+
+  <div class="page">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">❤</div>
+        <div>
+          <div style="font-weight:700">For My Little Rabbit</div>
+          <div style="font-size:12px;opacity:.9">Handmade with love ✨</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#gallery">Gallery</a>
+        <a href="#notes">Love Notes</a>
+        <a href="#surprise">Surprise</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-card">
+        <div class="hero-left">
+          <div class="title">For My Little Rabbit 🐇</div>
+          <div class="subtitle">I made this just for you</div>
+          <button class="enter-btn" id="enterBtn">Click to Enter My Heart ❤️</button>
+
+          <!-- small intro -->
+          <div style="margin-top:18px;opacity:.95;font-size:14px">Made by: <strong>Kanha</strong></div>
+        </div>
+
+        <div class="hero-right">
+          <!-- mini photo card: replace src with her photo -->
+          <div class="mini-card" title="I love you my Love">
+            <!-- Replace the src below with a URL to her photo or local path like ./images/her1.jpg -->
+            <img src="Image/IMG-20240504-WA0050.jpg" alt="I love you my love" class="content-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section">
+      <h2>Photo Moments</h2>
+      <div class="gallery" id="galleryGrid">
+        <!-- Replace these images with her pictures. You can keep number of items -->
+        <div class="photo" data-title="Our Smile" data-src="Image/IMG20240427105108.jpg">
+          <img src="Image/IMG20240427105108.jpg" alt="photo1">
+          <div class="label">Our Smile</div>
+        </div>
+        <div class="photo" data-title="Lovely Day" data-src="Image/WhatsApp Image 2025-09-25 at 23.28.04_723abff8.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.28.04_723abff8.jpg" alt="photo2">
+          <div class="label">Lovely Day</div>
+        </div>
+        <div class="photo" data-title="Sweet Memory" data-src="Image/WhatsApp Image 2025-09-25 at 23.27.59_890a9750.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.27.59_890a9750.jpg" alt="photo3">
+          <div class="label">Sweet Memory</div>
+        </div>
+        <div class="photo" data-title="Cute" data-src="Image/IMG-20241105-WA0090.jpg">
+          <img src="Image/IMG-20241105-WA0090.jpg" alt="photo4">
+          <div class="label">Cute</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/Snapchat-726065339.jpg">
+          <img src="Image/Snapchat-726065339.jpg" alt="photo19">
+          <div class="label">Funny</div>
+        </div>
+        <div class="photo" data-title="Hayeee" data-src="Image/WhatsApp Image 2025-09-25 at 23.27.40_221f2837.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.27.40_221f2837.jpg" alt="photo5">
+          <div class="label">Hayeee</div>
+        </div>
+        <div class="photo" data-title="favourite" data-src="Image/WhatsApp Image 2025-09-25 at 23.28.02_3f613d49.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.28.02_3f613d49.jpg" alt="photo6">
+          <div class="label">My favourite</div>
+        </div>
+        <div class="photo" data-title="favourite" data-src="Image/IMG20241005131927.jpg">
+          <img src="Image/IMG20241005131927.jpg" alt="photo6">
+          <div class="label">Shy</div>
+        </div>
+        <div class="photo" data-title="Black" data-src="Image/WhatsApp Image 2025-09-25 at 23.28.07_80fa58d9.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.28.07_80fa58d9.jpg" alt="photo7">
+          <div class="label">Black & White</div>
+        </div>
+        <div class="photo" data-title="Sukoon" data-src="Image/WhatsApp Image 2025-09-25 at 23.28.03_7474fb71.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.28.03_7474fb71.jpg" alt="photo8">
+          <div class="label">Sukoon</div>
+        </div>
+          <div class="photo" data-title="Angry" data-src="Image/WhatsApp Image 2025-09-26 at 01.46.21_6c554490.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.46.21_6c554490.jpg" alt="photo9">
+          <div class="label">Hot</div>
+        </div>
+        <div class="photo" data-title="Perfection" data-src="Image/WhatsApp Image 2025-09-25 at 23.27.51_b392995f.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.27.51_b392995f.jpg" alt="photo10">
+          <div class="label">Perfection</div>
+        </div>
+        <div class="photo" data-title="Kiss" data-src="Image/WhatsApp Image 2025-09-26 at 01.06.47_81c4355b.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.06.47_81c4355b.jpg" alt="photo11">
+          <div class="label">Kiss</div>
+        </div>
+        <div class="photo" data-title="Beautiful" data-src="Image/WhatsApp Image 2025-09-25 at 23.27.52_924883cf.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.27.52_924883cf.jpg" alt="photo12">
+          <div class="label">Beautiful</div>
+        </div>
+        <div class="photo" data-title="Eyes" data-src="Image/WhatsApp Image 2025-09-25 at 23.27.49_99fb86cc.jpg">
+          <img src="Image/WhatsApp Image 2025-09-25 at 23.27.49_99fb86cc.jpg" alt="photo14">
+          <div class="label">Eyes</div>
+        </div>
+        <div class="photo" data-title="Ghibli" data-src="Image/WhatsApp Image 2025-09-26 at 01.07.39_7901dac4.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.07.39_7901dac4.jpg" alt="photo15">
+          <div class="label">Ghibli</div>
+        </div>
+        <div class="photo" data-title="Hairs" data-src="Image/IMG-20241116-WA0093.jpg">
+          <img src="Image/IMG-20241116-WA0093.jpg" alt="photo16">
+          <div class="label">Open Hairs</div>
+        </div>
+        <div class="photo" data-title="favourite" data-src="Image/IMG20230204133941.jpg">
+          <img src="Image/IMG20230204133941.jpg" alt="photo20">
+          <div class="label">Billu Badmash</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/IMG-20241116-WA0063.jpg">
+          <img src="Image/IMG-20241116-WA0063.jpg" alt="photo17">
+          <div class="label">Baby</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/IMG-20241116-WA0092.jpg">
+          <img src="Image/IMG-20241116-WA0092.jpg" alt="photo18">
+          <div class="label">Savage</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/IMG20241005121035.jpg">
+          <img src="Image/IMG20241005121035.jpg" alt="photo18">
+          <div class="label">goggles</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/WhatsApp Image 2025-09-26 at 01.30.11_bba21e6a.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.30.11_bba21e6a.jpg" alt="photo18">
+          <div class="label">Attitude</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/WhatsApp Image 2025-09-26 at 01.30.11_00a08a87.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.30.11_00a08a87.jpg" alt="photo18">
+          <div class="label">Tension</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/WhatsApp Image 2025-09-26 at 01.30.08_822e47ce.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.30.08_822e47ce.jpg" alt="photo18">
+          <div class="label">Bahu Vibes</div>
+        </div>
+        <div class="photo" data-title="Baby" data-src="Image/WhatsApp Image 2025-09-26 at 01.46.19_039f24eb.jpg">
+          <img src="Image/WhatsApp Image 2025-09-26 at 01.46.19_039f24eb.jpg" alt="photo18">
+          <div class="label">Filter</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTES / TYPEWRITER -->
+    <section id="notes" class="section" style="align-items:center">
+      <h2>Love Notes</h2>
+      <div class="notes">
+        <div style="font-size:14px;opacity:.95;margin-bottom:8px;text-align: center;">A few words from me to you —</div>
+        <div id="typewriter" class="typewriter"></div>
+      </div>
+    </section>
+
+    <section id="notes" class="section" style="align-items:center">
+      <h2>Ingredient needed for a perfect relationship:</h2>
+      <div class="notes">
+        <div id="typewriters" class="typewriter"></div>
+      </div>
+    </section>
+
+    <section id="notes" class="section" style="align-items:center">
+      <h2>Name i Call you</h2>
+      <div class="notes">
+        <div id="typewriterss" class="typewriter"></div>
+      </div>
+    </section>
+
+    <!-- SURPRISE -->
+    <section id="surprise" class="section">
+      <h2>Surprise</h2>
+      <div class="surprise-wrap">
+        <div id="bigHeart" style="width:180px;height:180px;display:grid;place-items:center;cursor:pointer">
+          <!-- Heart element built with CSS -->
+          <div id="heartShape" style="width:120px;height:120px;transform:rotate(-45deg);position:relative;display:inline-block;transition:all .45s ease">
+            <div style="width:120px;height:120px;background:linear-gradient(180deg,var(--accent),#ff6ea0);border-radius:10px;position:absolute;left:0;top:0;transform:rotate(0deg)"></div>
+            <div style="position:absolute;width:120px;height:120px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#ff6ea0);left:0;top:-60px"></div>
+            <div style="position:absolute;width:120px;height:120px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#ff6ea0);left:60px;top:0"></div>
+          </div>
+        </div>
+        
+
+        <button class="surprise-btn" id="surpriseBtn">Click for a Sweet Surprise 🎁</button>
+
+        <div id="revealText" class="reveal">💖 Just thinking about you makes my whole day brighter ☀️✨. You’re my happiness 😘❤️. I don’t need a perfect day, I just need you by my side 👫💞. Every love story is special, but ours is my favorite 💌💑. You’re my first thought in the morning 🌅 and my last at night 🌙⭐. Being with you feels like home 🏡💕, and I never want to leave. I fall for you more every single day 💘, and I don’t want it to stop. You’re my today, my tomorrow, and all my every days 🕊️💖. No matter where life takes me 🌍✈️, my heart will always find its way to you 💓💫.</div>
+        <div class="emoji">❤️ 🤗 😘 ❤️ 🤗 😘</div>
+      </div>
+    </section>
+
+    <footer>
+      ❤️ Forged with heart by Kanha — made to make you smile 😊.
+    </footer>
+  </div>
+
+  <!-- Photo Modal -->
+  <div class="modal" id="photoModal" aria-hidden="true" role="dialog">
+    <div class="modal-card" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <strong id="modalTitle">Photo</strong>
+        <button id="closeModal" style="background:transparent;border:none;font-size:18px;cursor:pointer">✕</button>
+      </div>
+      <img id="modalImg" src="" alt="large view">
+    </div>
+  </div>
+
+  <!-- Confetti canvas -->
+  <div class="confetti" id="confettiLayer"></div>
+
+  <script>
+
+    (function createBg(){
+      const bg = document.getElementById('bgLayer');
+      // Stars
+      for(let i=0;i<60;i++){
+        const s = document.createElement('div');
+        s.className='star';
+        s.style.left = Math.random()*100+'vw';
+        s.style.top  = Math.random()*100+'vh';
+        s.style.animationDuration = (1+Math.random()*3)+'s';
+        s.style.opacity = (0.1 + Math.random()*0.9);
+        bg.appendChild(s);
+      }
+      // Sparkles (larger moving)
+      for(let i=0;i<12;i++){
+        const sp = document.createElement('div');
+        sp.className='sparkle';
+        sp.style.left = Math.random()*100+'vw';
+        sp.style.top  = Math.random()*120+'vh';
+        sp.style.width = (4+Math.random()*10)+'px';
+        sp.style.height = (4+Math.random()*10)+'px';
+        sp.style.animationDuration = (8 + Math.random()*8)+'s';
+        bg.appendChild(sp);
+      }
+    })();
+
+    const enterBtn = document.getElementById('enterBtn');
+    enterBtn.addEventListener('click', () => {
+      // soft shake + glow then scroll to gallery
+      enterBtn.animate([
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-8px)' },
+        { transform: 'translateY(0)' }
+      ], { duration: 500, easing:'ease-out' });
+      // highlight then scroll
+      setTimeout(()=> document.getElementById('gallery').scrollIntoView({behavior:'smooth'}), 420);
+    });
+
+    const photos = document.querySelectorAll('.photo');
+    const modal = document.getElementById('photoModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeModal = document.getElementById('closeModal');
+
+    photos.forEach(p => {
+      p.addEventListener('click', () => {
+        const src = p.getAttribute('data-src') || p.querySelector('img').src;
+        const title = p.getAttribute('data-title') || "Memory";
+        modalImg.src = src;
+        modalTitle.textContent = title;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+      });
+    });
+    closeModal.addEventListener('click', ()=> {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      modalImg.src = '';
+    });
+
+    // close on overlay click
+    modal.addEventListener('click', (e) => { if(e.target === modal){ closeModal.click(); } });
+
+    /* -------------------------
+       Typewriter love notes
+       ------------------------- */
+const lines = [
+  "In a world full of noise, your voice feels like home 🏡💖.",
+  "You're not just my today…you’re every tomorrow I dream of 🌅✨💫.",
+  "Holding your hand feels like holding the universe in peace 🌌🤲💞.",
+  "I never believed in destiny, until your name felt written in my soul ✍️❤️🌟.",
+  "When I picture my future, it's your eyes I see first 👀💖🌹.",
+  "Your laugh is the melody I want echoing in our home for a lifetime 🎶😂🏡💛.",
+  "I don’t want a perfect wedding … I want a real forever with you 💍💓🕊️.",
+  "You're not just the one I love… you're the one I choose, every day 💑❤️💫.",
+  "If love is a journey, then walking it with you is my favorite path 🚶‍♂️💖🌈."
+];
+
+const lines2 = [
+  "No ego. 🙅‍♂️💖",
+  "Little jealousy. 😌💛",
+  "Few fights. ✌️🔥",
+  "No secrets. 🤫🔓",
+  "Healthy possessiveness. 👫💞",
+  "Excessive attachments. 🤗💗",
+  "Never giving up attitude. 💪🌟",
+  "Infinite love. ♾️❤️",
+  "And too much respect and trust. 🙏🤝💖"
+];
+
+const lines3 = [
+  "Meri Ardhangini 💕",
+  "Wifey 💍❤️",
+  "Wifu 🥰",
+  "Love 💖",
+  "Babe 😘",
+  "Baby 👶💛",
+  "Bachha 🐣",
+  "Radhe 🙏💞",
+  "Radha 🌸❤️",
+  "Shonna 🐰💖",
+  "Meri Heartbeat 💓",
+  "World 🌎❤️",
+  "Heart ❤️",
+  "My Left side 💗",
+  "Buddhu 🤪💛",
+  "Joodlloo 🦉💖",
+  "Sweetheart 🍬💞",
+  "Queen 👑❤️",
+  "Princess 👸💖",
+  "Little Rabbit 🐇💛",
+  "Sunshine ☀️💛",
+  "Life 🌺❤️",
+  "Vrinda 🌼💖",
+  "Ms. Psycho 😜💞",
+  "Mauli 🌸💛",
+  "Katyayani 🙏💖",
+  "Nano 🐾❤️",
+  "Chandi 🌙💛",
+  "Ms. librarian 📚💖",
+  "Priyatma 💖✨",
+  "Hira 💎❤️",
+  "Moti 🐚💛",
+  "Panda 🐼💞",
+  "Kumbhkarn ki vnshj 🛌💖"
+];
+
+const writers = [
+  { lines: lines, element: document.getElementById('typewriter'), addNumbers: false },
+  { lines: lines2, element: document.getElementById('typewriters'), addNumbers: false },
+  { lines: lines3, element: document.getElementById('typewriterss'), addNumbers: true }
+];
+
+let doneFlags = [false, false, false];
+const WAIT_TIME = 2000; // 2 seconds pause
+
+function typewriterEffect(writerIndex) {
+  const { lines, element, addNumbers } = writers[writerIndex];
+  let currentLine = 0;
+  let charIndex = 0;
+  let lineDiv = null;
+
+  function typeAll() {
+    if (currentLine >= lines.length) {
+      doneFlags[writerIndex] = true;
+      checkAllDone();
+      return;
+    }
+
+    if (!lineDiv) {
+      lineDiv = document.createElement('div');
+      element.appendChild(lineDiv);
+    }
+
+    let text = lines[currentLine];
+    if (addNumbers) text = `${currentLine + 1}. ${text}`;
+
+    if (charIndex <= text.length) {
+      lineDiv.textContent = text.slice(0, charIndex);
+      charIndex++;
+      setTimeout(typeAll, 20 + Math.random() * 20);
+    } else {
+      charIndex = 0;
+      currentLine++;
+      lineDiv = null;
+      setTimeout(typeAll, 900);
+    }
+  }
+
+  typeAll();
+}
+
+function checkAllDone() {
+  if (doneFlags.every(flag => flag)) {
+    setTimeout(() => {
+      writers.forEach((w, i) => {
+        w.element.innerHTML = '';
+        doneFlags[i] = false;
+      });
+      writers.forEach((_, i) => typewriterEffect(i));
+    }, WAIT_TIME);
+  }
+}
+
+// start all typewriters
+writers.forEach((_, i) => typewriterEffect(i));
+
+
+    /* -------------------------
+       Surprise: Heart click + confetti
+       ------------------------- */
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const revealText = document.getElementById('revealText');
+    const bigHeart = document.getElementById('bigHeart');
+    const confettiLayer = document.getElementById('confettiLayer');
+
+    function launchConfetti(amount=40){
+      const colors = ['#ff6ea0','#ffd166','#ffd5e5','#ff4d6d','#ff9fb1'];
+      for(let i=0;i<amount;i++){
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+        piece.style.left = (40 + Math.random()*20) + 'vw';
+        piece.style.top = (50 + Math.random()*10) + 'vh';
+        piece.style.transform = `translateY(-10vh) rotate(${Math.random()*360}deg)`;
+        piece.style.width = (6 + Math.random()*12) + 'px';
+        piece.style.height = (8 + Math.random()*16) + 'px';
+        confettiLayer.appendChild(piece);
+
+        // animate with JS (so we can remove)
+        const duration = 2000 + Math.random()*1200;
+        const finalX = (Math.random()*120 - 10) + 'vw';
+        const finalY = (Math.random()*-120 - 60) + 'vh';
+        piece.animate([
+          { transform: `translate(0,0) rotate(0deg)`, opacity:1 },
+          { transform: `translate(${finalX}, ${finalY}) rotate(${Math.random()*720}deg)`, opacity:0 }
+        ], { duration: duration, easing: 'cubic-bezier(.2,.9,.2,1)' });
+
+        setTimeout(()=> piece.remove(), duration+60);
+      }
+    }
+
+    function showReveal(){
+      revealText.classList.add('show');
+      // micro pulse
+      revealText.animate([
+        { transform: 'scale(.95)', opacity:0.8 },
+        { transform: 'scale(1.02)', opacity:1 },
+        { transform: 'scale(1)', opacity:1 }
+      ], { duration: 900, easing: 'ease-out' });
+    }
+
+    surpriseBtn.addEventListener('click', () => {
+      // animate heart pop
+      const heartEl = document.getElementById('heartShape');
+      heartEl.animate([
+        { transform: 'rotate(-45deg) scale(1)' },
+        { transform: 'rotate(-45deg) scale(0.95)' },
+        { transform: 'rotate(-45deg) scale(1.25)' },
+        { transform: 'rotate(-45deg) scale(1)' }
+      ], { duration: 700, easing: 'cubic-bezier(.2,.9,.2,1)' });
+      // confetti + reveal
+      setTimeout(()=> {
+        launchConfetti(60);
+        showReveal();
+      }, 350);
+      // small floating hearts from the heart
+      burstSmallHearts(16);
+    });
+
+    bigHeart.addEventListener('click', ()=> {
+      // same surprise on heart click
+      surpriseBtn.click();
+      // soft scroll to reveal text
+      setTimeout(()=> document.getElementById('surprise').scrollIntoView({behavior:'smooth'}), 120);
+    });
+
+    /* small hearts bursting from the big heart */
+    function burstSmallHearts(n=12){
+      const colors = ['#ff6ea0','#ffb6d1','#fff2f6'];
+      for(let i=0;i<n;i++){
+        const h = document.createElement('div');
+        h.style.position='absolute';
+        h.style.width='14px';h.style.height='14px';
+        h.style.left = (50 + (Math.random()*80 - 40)) + '%';
+        h.style.top  = (50 + (Math.random()*80 - 40)) + '%';
+        h.style.transform = 'rotate(45deg)';
+        h.style.background = colors[Math.floor(Math.random()*colors.length)];
+        h.style.borderRadius='2px';
+        h.style.zIndex = 28;
+        // heart shape using pseudo technique via box shadow - quick approach
+        h.style.clipPath = 'polygon(50% 0, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0 35%)';
+        document.body.appendChild(h);
+
+        const dx = (Math.random()*300 - 150);
+        const dy = (Math.random()*-400 - 100);
+        const rot = (Math.random()*720);
+        const dur = 900 + Math.random()*800;
+
+        h.animate([
+          { transform: `translate(0,0) rotate(0deg)`, opacity:1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity:0 }
+        ], { duration: dur, easing: 'cubic-bezier(.2,.9,.2,1)' });
+
+        setTimeout(()=> h.remove(), dur+40);
+      }
+    }
+
+    /* -------------------------
+       Extra: Replace photo button (UI hint)
+       ------------------------- */
+    document.getElementById('changePhotoBtn').addEventListener('click', ()=> {
+      alert('To personalize: replace the image src values in the HTML (gallery and mini-card). If you want, send me her pictures and I will embed them.');
+    });
+
+    /* -------------------------
+       Optional: Save page as image (download)
+       ------------------------- */
+    document.getElementById('downloadBtn').addEventListener('click', ()=> {
+      alert('Right-click the page -> Save as... or use your browser Print -> Save as PDF to keep this. If you want an image export, I can add a "download postcard" feature.');
+    });
+
+    /* -------------------------
+       Accessibility: Keyboard close modal
+       ------------------------- */
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeModal.click();
+    });
+  </script>
+</body>
+</html>

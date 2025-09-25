@@ -1,0 +1,25 @@
+img[alt="photo3"] {
+    height: 100%;
+    object-fit: cover;
+}
+img[alt="photo2"] {
+  width: 200px;              /* your card size */
+  height: auto;             /* fixed height */
+  overflow: hidden;          /* hides zoomed edges */
+  border-radius: 12px;
+  transform: translateY(-10px); 
+}
+img[alt="photo4"] {
+  transform: translateY(-10px); 
+}
+
+img[alt="photo9"] {
+  width: 200px;              /* your card size */
+  height: auto; 
+}
+img[alt="photo11"] {           
+  height: 100%; 
+  object-fit: contain;
+  width: auto;
+}
+
